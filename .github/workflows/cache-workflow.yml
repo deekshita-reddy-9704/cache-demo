@@ -20,7 +20,7 @@ jobs:
         node-version: '18'
 
     - name: Cache dependencies
-      id: cache-step
+      id: prime-cache-6e7514a
       uses: actions/cache@v4
       with:
         path: ~/.npm
@@ -29,4 +29,4 @@ jobs:
           cache-6e7514a
 
     - name: Echo cache result
-      run: echo "Cache hit? ${{ steps.cache-step.outputs.cache-hit }}"
+      run: echo "Cache hit? ${{ steps.prime-cache-6e7514a.outputs.cache-hit }}"
