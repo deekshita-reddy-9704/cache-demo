@@ -1,0 +1,32 @@
+name: CI with Cache
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Cache dependencies
+      id: prime-cache-6e7514a
+      uses: actions/cache@v4
+      with:
+        path: ~/.npm
+        key: cache-6e7514a
+        restore-keys: |
+          cache-6e7514a
+
+    - name: Echo cache result
+      run: echo "Cache hit? ${{ steps.prime-cache-6e7514a.outputs.cache-hit }}"
